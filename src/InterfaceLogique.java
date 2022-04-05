@@ -1,6 +1,6 @@
 /**
  * Interface logique pour la partie view
- * @author Ianis Zemali
+ * @author Ianis Zemali2
  */
 public interface InterfaceLogique {
     /**
