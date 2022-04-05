@@ -19,9 +19,9 @@ public class Super extends PacGomme{
     /**
      * Permet d'implémenter l'invincibilité de Pacman.
      * inclus:
-     * -changement de l'état des phantomes à 1:en fuite
-     * -changement de l'état de Pacman à invincible(clignote)
-     * -changement de la vitesse des phantomes 
+     * -changement de l'état des phantomes à 1: en fuite;
+     * -changement de l'état de Pacman à 1: invincible(clignote);
+     * -changement de la vitesse des phantomes (lent)
      */
     public void invincibilite(){
         Ghost.etatG = 1;
