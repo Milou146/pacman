@@ -28,7 +28,7 @@ public class PacGomme extends Entite{
     /**
      * Le nombre de Pac-gommes dans le niveau
      */
-    public int nb;
+    public int nbNPG;
 
     /**
      * Permet de commaitre le nombre de points d'une Pac-gomme
@@ -39,7 +39,12 @@ public class PacGomme extends Entite{
         return this.nbPoints;
     }
 
+    /**
+     * Permet de réduire le nombre de Pac-gomme quand Pacman en mange une
+     * 
+     * @return le nombre de Pac-gomme moins une
+     */
     public int decPG(){
-        return nb-1;
+        return nbNPG-1;
     }
 }
