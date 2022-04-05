@@ -70,7 +70,7 @@ public interface InterfaceLogique {
      * 2:mort
      * 
      * @return l'état du phantome
-     */
+     */ 
     public int getEtatGhost();
 
     /**
