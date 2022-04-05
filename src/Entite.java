@@ -6,6 +6,7 @@ public class Entite {
      * 2-> Ghost
      * 3-> Point
      * 4x-> Pac-gomme
+     * 5-> Super Pac-gomme
      * 9-> mur
      */
     public int ref;
