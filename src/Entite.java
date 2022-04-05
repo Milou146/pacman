@@ -11,7 +11,16 @@ public class Entite {
     public int ref;
 
     /**
-     * La référence
+     * Une entité, caractérisée par sa référence
+     * 
+     * @param ref la référence de l'entité
+     */
+    public Entite(int ref) {
+        this.ref = ref;
+    }
+
+    /**
+     * La référence assoviée à une entité
      * 
      * @return la référence
      */
