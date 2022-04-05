@@ -31,6 +31,19 @@ public class PacGomme extends Entite{
     public int nbNPG;
 
     /**
+     * Une Pac-gomme
+     * 
+     * @param ref la référence de la Pac-gomme
+     * @param type le type de la Pac-gomme
+     * @param nbPoints le nombre de points de la Pac-gomme
+     */
+    public PacGomme(int ref, String type, int nbPoints){
+        super(ref);
+        this.type = type;
+        this.nbPoints = nbPoints;
+    }
+
+    /**
      * Permet de commaitre le nombre de points d'une Pac-gomme
      * 
      * @return le nombre de points de la Pac-gomme
