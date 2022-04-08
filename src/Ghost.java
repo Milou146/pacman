@@ -2,7 +2,15 @@ import java.util.Random;
 
 public class Ghost extends Entite{
 
+    /**
+     * Un random permettant de rendre le chemin du phantome random
+     */
     public static final Random R = new Random();
+
+    /**
+     * La prochaine position d'un phantome
+     */
+    public int[] nextPos;
 
     /**
      * Permet de caractériser l'état du phantome:
@@ -60,6 +68,7 @@ public class Ghost extends Entite{
         if (r == 3 && lay[x][y-1] != 9){
             p[1] -= 1;
             lay[x][y] = 0;
+        this.nextPos = p;
         }
     }
 
@@ -75,11 +84,24 @@ public class Ghost extends Entite{
         }
     }
 
+    /**
+     * Permet de connaitre l'état du phantome:
+     * 0 -> normal;
+     * 1 -> en fuite;
+     * 2 -> mort
+     * 
+     * @return l'état du phantome
+     */
     public int getEtatG(){
         return this.etatG;
     }
 
-    public String getMoveG(){
-        return this.;
+    /**
+     * Permet de connaitre la prochaine position du phantome
+     * 
+     * @return la prochaine position du phantome
+     */
+    public int[] getMoveG(){
+        return this.nextPos;
     }
 }
