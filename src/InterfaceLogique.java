@@ -82,4 +82,11 @@ public interface InterfaceLogique {
      * @return l'état de Pacman
      */
     public int getEtatPacman();
+
+    /**
+     * Permet de connaitre la position de l'entité
+     * 
+     * @return la position de l'entité
+     */
+    public int[] getPos();
 }
