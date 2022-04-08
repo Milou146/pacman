@@ -21,7 +21,7 @@ public class Entite {
     }
 
     /**
-     * La référence assoviée à une entité
+     * La référence associée à une entité
      * 
      * @return la référence
      */
