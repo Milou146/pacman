@@ -59,4 +59,11 @@ public interface InterfaceData {
      * @return le nombre de points associés au fruit.
      */
     public int getPointFruit();
+    
+        /**
+     * Permet de connaitre la position de l'entité
+     * 
+     * @return la position de l'entité
+     */
+    public int[] getPos();
 }
