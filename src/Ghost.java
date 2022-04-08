@@ -1,4 +1,8 @@
+import java.util.Random;
+
 public class Ghost extends Entite{
+
+    public static final Random R = new Random();
 
     /**
      * Permet de caractériser l'état du phantome:
@@ -29,10 +33,34 @@ public class Ghost extends Entite{
     }
 
     /**
-     * Permet de bouger le phantome
+     * Permet de bouger le phantome selon un chiffre choisit au hasard:
+     * 0 -> haut;
+     * 1 -> droite;
+     * 2 -> bas;
+     * 3 -> gauche
      */
     public void moveG(){
-        
+        int[] p = this.getPos();
+        int x = p[0];
+        int y = p[1];
+        int r = Ghost.R.nextInt(4);
+        int[][] lay = Layout.getLayout();
+        if (r == 0 && lay[x-1][y] != 9){
+            p[0] -= 1;
+            lay[x][y] = 0;
+        }
+        if (r == 1 && lay[x][y+1] != 9){
+            p[1] += 1;
+            lay[x][y] = 0;
+        }
+        if (r == 2 && lay[x+1][y] != 9){
+            p[0] += 1;
+            lay[x][y] = 0;
+        }
+        if (r == 3 && lay[x][y-1] != 9){
+            p[1] -= 1;
+            lay[x][y] = 0;
+        }
     }
 
     /**
