@@ -3,17 +3,17 @@ import java.util.Random;
 public class Ghost extends Entite{
 
     /**
-     * Un random permettant de rendre le chemin du phantome random
+     * Un random permettant de rendre le chemin du fantome random
      */
     public static final Random R = new Random();
 
     /**
-     * La prochaine position d'un phantome
+     * La prochaine position d'un fantome
      */
     public int[] nextPos;
 
     /**
-     * Permet de caractériser l'état du phantome:
+     * Permet de caractériser l'état du fantome:
      * 0 -> normal;
      * 1 -> en fuite;
      * 2 -> mort
@@ -21,18 +21,18 @@ public class Ghost extends Entite{
     public int etatG;
 
     /**
-     * Permet de caractériser la vitesse du phantome:
+     * Permet de caractériser la vitesse du fantome:
      * 0 -> normal;
      * 1 -> fuite (lent)
      */
     public int vitesseG;
 
     /**
-     * Un phantome
+     * Un fantome
      * 
-     * @param ref la référence d'un phantome (=2)
-     * @param etatG l'état d'un phantome
-     * @param vitesseG la vitesse d'un phantome
+     * @param ref la référence d'un fantome (=2)
+     * @param etatG l'état d'un fantome
+     * @param vitesseG la vitesse d'un fantome
      */
     public Ghost(int ref, int etatG, int vitesseG, int[] pos){
         super(ref, pos);
@@ -41,7 +41,7 @@ public class Ghost extends Entite{
     }
 
     /**
-     * Permet de bouger le phantome selon un chiffre choisit au hasard:
+     * Permet de bouger le fantome selon un chiffre choisit au hasard:
      * 0 -> haut;
      * 1 -> droite;
      * 2 -> bas;
@@ -73,7 +73,7 @@ public class Ghost extends Entite{
     }
 
     /**
-     * Permet de changer la vitesse d'un phantome
+     * Permet de changer la vitesse d'un fantome
      */
     public void changeV(){
         if (this.vitesseG == 0){
@@ -85,21 +85,21 @@ public class Ghost extends Entite{
     }
 
     /**
-     * Permet de connaitre l'état du phantome:
+     * Permet de connaitre l'état du fantome:
      * 0 -> normal;
      * 1 -> en fuite;
      * 2 -> mort
      * 
-     * @return l'état du phantome
+     * @return l'état du fantome
      */
     public int getEtatG(){
         return this.etatG;
     }
 
     /**
-     * Permet de connaitre la prochaine position du phantome
+     * Permet de connaitre la prochaine position du fantome
      * 
-     * @return la prochaine position du phantome
+     * @return la prochaine position du fantome
      */
     public int[] getMoveG(){
         return this.nextPos;
