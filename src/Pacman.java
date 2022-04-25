@@ -77,12 +77,26 @@ public class Pacman{
             yDir = 1;
         }
     }
+    /**
+     * -1 means -X
+     * +1 means +X
+     * @return the X direction of pacman
+     */
     int getXDir(){
         return this.xDir;
     }
+    /**
+     * -1 means -Y
+     * 1 means +Y
+     * @return the Y direction of pacman
+     */
     int getYDir(){
         return this.yDir;
     }
+    /**
+     * Set the X direction of pacman
+     * @param newXDir the new direction, -1 or 1
+     */
     void setXDir(int newXDir){
         xDir = newXDir;
     }
