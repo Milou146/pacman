@@ -53,22 +53,26 @@ public class Ghost extends Entite{
         int y = p[1];
         int r = Ghost.R.nextInt(4);
         int[][][] lay = Layout.getLayout();
-        if (r == 0 && lay[2][x-1][y] != 9){
+        if (r == 0 && lay[0][y-1][x] != 9){
             p[0] -= 1;
-            lay[2][x][y] = 0;
+            lay[1][y][x] = 0;
         }
-        if (r == 1 && lay[2][x][y+1] != 9){
+        else if (r == 1 && lay[0][y][x+1] != 9){
             p[1] += 1;
-            lay[2][x][y] = 0;
+            lay[1][y][x] = 0;
         }
-        if (r == 2 && lay[2][x+1][y] != 9){
+        else if (r == 2 && lay[0][y+1][x] != 9){
             p[0] += 1;
-            lay[2][x][y] = 0;
+            lay[1][y][x] = 0;
         }
-        if (r == 3 && lay[2][x][y-1] != 9){
+        else if (r == 3 && lay[0][y][x-1] != 9){
             p[1] -= 1;
-            lay[0][x][y] = 0;
+            lay[1][y][x] = 0;
+        }
         this.nextPos = p;
+
+        if (this.etatG == 0 && Pacman.etatP == 0){
+            Pacman.LP -= 1;
         }
     }
 
