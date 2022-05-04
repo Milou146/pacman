@@ -1,3 +1,7 @@
+/**
+ * This is where we implement all the classes process the view
+ * @author Emilien André
+ */
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -5,11 +9,12 @@ import javax.swing.*;
 public class App {
     public static void main(String[] args) throws Exception {
         JFrame frame = new JFrame("Pacman");
-        frame.setSize(new Dimension(1080,720));
+        frame.setSize(new Dimension(1920,1080));
         frame.setVisible(true);
         frame.setLocation(80, 30);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Graphics graphics = frame.getGraphics();
+
+        Graphics graphics = frame.getGraphics();//the frame's graphic
         Pacman pacman = new Pacman(graphics);
         int refreshRate = 200;
         class RefreshFrame extends Thread {
@@ -20,7 +25,7 @@ public class App {
         
             public void run() {
                 while(true){
-                    graphics.clearRect(0,0,1080,720); //clear the graphics
+                    graphics.clearRect(0,0,1920,1080); //clear the graphics
                     pacman.openCloseMouth();//change the mouth's state closed to open or open to closed
                     pacman.draw();
                     try {
@@ -36,40 +41,38 @@ public class App {
         class GameKeyListener implements KeyListener{
         
             @Override
-            public void keyTyped(KeyEvent e) {
-                
+            public void keyTyped(KeyEvent e) {// there is nothing to do aside override the default method
             }
         
             @Override
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                if(key == 90){
+                if(key == 90){ // Z
                     pacman.setDir("front");
                 }
-                else if(key == 81){
+                else if(key == 81){ // Q
                     pacman.setDir("left");
                 }
-                else if(key == 83){
+                else if(key == 83){ // S
                     pacman.setDir("back");
                 }
-                else if(key == 68){
+                else if(key == 68){ // D
                     pacman.setDir("right");
                 }
             }
         
             @Override
-            public void keyReleased(KeyEvent e) {
-                // TODO Auto-generated method stub
-                
+            public void keyReleased(KeyEvent e) {// there is nothing to do aside override the default method
             }
         
         }
         frame.addKeyListener(new GameKeyListener());
+
         while(true){
             if(pacman.canMove()){
                 pacman.move();
             }
-            Thread.sleep(refreshRate);
+            Thread.sleep(refreshRate); // we don't want the move to be triggered more than the screen refresh
         }
     }
 }
