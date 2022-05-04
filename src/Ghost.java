@@ -18,26 +18,29 @@ public class Ghost extends Entite{
      * 1 -> en fuite;
      * 2 -> mort
      */
-    public int etatG;
+    public int etatG = 0;
 
     /**
      * Permet de caractÃ©riser la vitesse du fantome:
      * 0 -> normal;
      * 1 -> fuite (lent)
      */
-    public int vitesseG;
+    public int vitesseG = 0;
 
     /**
      * Un fantome
      * 
-     * @param ref la rÃ©fÃ©rence d'un fantome (=2)
-     * @param etatG l'Ã©tat d'un fantome
+     * @param ref la référence d'un fantome (=2)
+     * @param etatG l'état d'un fantome
      * @param vitesseG la vitesse d'un fantome
      */
-    public Ghost(int ref, int etatG, int vitesseG, int[] pos){
-        super(ref, pos);
-        this.etatG = etatG;
-        this.vitesseG = vitesseG;
+    public Ghost(int ref, int x, int y)
+    {
+        super(ref);
+        this.x = x;
+        this.y = y;
+        this.pos[0] = x;
+        this.pos[1] = y;
     }
 
     /**
@@ -103,5 +106,15 @@ public class Ghost extends Entite{
      */
     public int[] getMoveG(){
         return this.nextPos;
+    }
+    
+    /**
+     * Permet de connaitre la vitesse du fantome.
+     * 
+     * @return la vitesse du fantome.
+     */
+    public int getVitesseG()
+    {
+    	return this.vitesseG;
     }
 }
