@@ -127,7 +127,8 @@ public class SerializerDonnees {
 			final Layout layoutPacgommes = new Layout(plateau2,2);
 			final Layout[] tabLayout = {layoutPacmanMurs, layoutGhost, layoutPacgommes};
 			final Ghost[] tabGhosts = {ghost1, ghost2, ghost3, ghost4};
-			final Level level = new Level(numero,1.57,204,tabLayout);
+			final double vitesseNiv = 1 + (numero-1)*0.03;
+			final Level level = new Level(numero,vitesseNiv,204,tabLayout);
 			System.out.println(level.getNumLevel());
 			
 			
