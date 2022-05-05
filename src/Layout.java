@@ -2,10 +2,10 @@ public class Layout implements java.io.Serializable{
 	
 
 	
-	private int[][] layout;
+	private static int[][] layout;
 	
 	/**
-	 * Les layouts ont une référence similaire aux entités :
+	 * Les layouts ont une rï¿½fï¿½rence similaire aux entitï¿½s :
 	 * 0 - Layout Pacman & Murs
 	 * 1 - Layout Ghosts
 	 * 2 - Layout Pacgommes
@@ -19,18 +19,18 @@ public class Layout implements java.io.Serializable{
 	 */
 	public Layout(int[][] layout, int reflay)
 	{
-		this.layout = layout;
+		Layout.layout = layout;
 		this.reflay = reflay;
 	}
-	
-	public  int[][] getLayout()
+
+	public static int[][] getLayout(int reflay)
 	{
-		return this.layout;
+		return layout;
 	}
 	
 	/**
 	 * Donne un layer. Il s'agit d'un etage d'un layout.
-	 * Les etages sont définis comme suit :
+	 * Les etages sont dÃ©finis comme suit :
 	 * 0 - Layer Pacman & Murs
 	 * 1 - Layer Ghosts
 	 * 2 - Layer Pacgommes

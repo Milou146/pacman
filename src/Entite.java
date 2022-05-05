@@ -1,29 +1,29 @@
 
 public class Entite implements java.io.Serializable{
 	/**
-	 * La référence de l'entité.
+	 * La rï¿½fï¿½rence de l'entitï¿½.
 	 */
-	public int ref = 0;
+	public int ref ;
 	
 	/**
-	 * La position selon l'axe des abscisses de l'entité.
+	 * La position selon l'axe des abscisses de l'entitï¿½.
 	 */
 	public int x = 0;
 	
 	/**
-	 * La position selon l'axe des ordonnées de l'entité.
+	 * La position selon l'axe des ordonnï¿½es de l'entitï¿½.
 	 */
 	public int y = 0;
 	
 	/**
-	 * La position selon les axes x et y de l'entité.
+	 * La position selon les axes x et y de l'entitï¿½.
 	 */
 	public int[] pos = {this.x,this.y};
 	
 	/**
-	 * Une entité, caractérisée par sa référence.
+	 * Une entitï¿½, caractï¿½risï¿½e par sa rï¿½fï¿½rence.
 	 *
-	 * @param ref la référence de l'entité
+	 * @param ref la rï¿½fï¿½rence de l'entitï¿½
 	 */
 	public Entite(int ref)
 	{
@@ -31,9 +31,9 @@ public class Entite implements java.io.Serializable{
 	}
 	
 	/**
-	 * La référence associée à l'entité.
+	 * La rï¿½fï¿½rence associï¿½e ï¿½ l'entitï¿½.
 	 * 
-	 * @return la référence de l'entité.
+	 * @return la rï¿½fï¿½rence de l'entitï¿½.
 	 */
 	public int getRef()
 	{
@@ -41,27 +41,27 @@ public class Entite implements java.io.Serializable{
 	}
 	
 	/**
-	 * La coordonnée x de l'entité.
+	 * La coordonnï¿½e x de l'entitï¿½.
 	 * 
-	 * @return la coordonnée x de l'entité.
+	 * @return la coordonnï¿½e x de l'entitï¿½.
 	 */
-	public int getX()
+	short getX()
 	{
-		return this.x;
+		return (short) this.x;
 	}
 	
 	/**
-	 * La coordonnée y de l'entité.
-	 * 
-	 * @return la coordonnée y de l'entité.
+	 * La coordonnï¿½e y de l'entitï¿½.
+	 * s
+	 * @return la coordonnï¿½e y de l'entitï¿½.
 	 */
-	public int getY()
+	short getY()
 	{
-		return this.y;
+		return (short) this.y;
 	}
 	
 	/**
-	 * Le couple de coordonnées de l'entité.
+	 * Le couple de coordonnï¿½es de l'entitï¿½.
 	 * 
 	 * @return
 	 */

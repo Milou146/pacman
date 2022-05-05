@@ -19,8 +19,8 @@ public class DeSerializerDonnees {
 	  private static Pacman lePacman;
 	
 	  /**
-	   * La table des point gagnés en fonction du type de chaque Pac-Gomme.
-	   * Le nombre de points d'une Pac-gomme, dépendant de son type:
+	   * La table des point gagnï¿½s en fonction du type de chaque Pac-Gomme.
+	   * Le nombre de points d'une Pac-gomme, dï¿½pendant de son type:
 	   * 1)  normal:10 pts
 	   * 2)  cerise:100 pts
 	   * 3)  fraise:300 pts
@@ -45,8 +45,8 @@ public class DeSerializerDonnees {
 	      final Pacman pacman = (Pacman) ois.readObject();
 	      final int[] tableauNbPoints = (int[]) ois.readObject();
 	      
-	      //Quelques informations sur le niveau qui a été chargé.
-	      System.out.println("Numéro du level : " + level.getNumLevel());
+	      //Quelques informations sur le niveau qui a ï¿½tï¿½ chargï¿½.
+	      System.out.println("Numï¿½ro du level : " + level.getNumLevel());
 	      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
 	      System.out.println("Vitesse du niveau : " + level.getVitesse());
 	      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");
@@ -83,7 +83,7 @@ public class DeSerializerDonnees {
 	  }
 	  
 	  /**
-	   * Donne l'ensemble des ghosts présents dans le niveau avec leur placement initial.
+	   * Donne l'ensemble des ghosts prï¿½sents dans le niveau avec leur placement initial.
 	   * 
 	   * @return le tableau des ghosts du niveau.
 	   */

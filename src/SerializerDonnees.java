@@ -5,8 +5,8 @@ import java.io.ObjectOutputStream;
 public class SerializerDonnees {
 	
 	/**
-	 * Serialisation des données.
-	 * Ecriture des donnees utiles au chargement d'un niveau dans le fichier correspondant à ce niveau.
+	 * Serialisation des donnï¿½es.
+	 * Ecriture des donnees utiles au chargement d'un niveau dans le fichier correspondant ï¿½ ce niveau.
 	 * 
 	 */
 	public static void main(final String argv[])
@@ -101,7 +101,7 @@ public class SerializerDonnees {
 				};
 		/**
 		 * Tableau des points pour les Pac-Gommes.
-		 * le nombre de points d'une Pac-gomme, dépendant de son type:
+		 * le nombre de points d'une Pac-gomme, dï¿½pendant de son type:
 		 * 1)  normal:10 pts
 		 * 2)  cerise:100 pts
 		 * 3)  fraise:300 pts

@@ -18,7 +18,7 @@ public class PacGomme extends Entite{
      * cle:5000 pt,
      * super:50 pt
      */
-    public int nbPoints;
+    public static int nbPoints;
 
     /**
      * Le nombre de Pac-gommes mangées par Pacman dans le niveau
@@ -28,7 +28,7 @@ public class PacGomme extends Entite{
     /**
      * Le nombre de Pac-gommes dans le niveau
      */
-    public int nbNPG;
+    public static int nbNPG;
 
     /**
      * Une Pac-gomme
@@ -40,7 +40,7 @@ public class PacGomme extends Entite{
     public PacGomme(int ref, String type, int nbPoints){
         super(ref);
         this.type = type;
-        this.nbPoints = nbPoints;
+        PacGomme.nbPoints = nbPoints;
     }
 
     /**
@@ -48,8 +48,8 @@ public class PacGomme extends Entite{
      * 
      * @return le nombre de points de la Pac-gomme
      */
-    public int getPointPG(){
-        return this.nbPoints;
+    public static int getPointPG(){
+        return PacGomme.nbPoints;
     }
 
     /**
@@ -57,7 +57,7 @@ public class PacGomme extends Entite{
      * 
      * @return le nombre de Pac-gomme moins une
      */
-    public int decPG(){
+    public static int decPG(){
         return nbNPG-1;
     }
 }

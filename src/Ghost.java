@@ -10,7 +10,7 @@ public class Ghost extends Entite{
     /**
      * La prochaine position d'un fantome
      */
-    public int[] nextPos;
+    public static int[] nextPos;
 
     /**
      * Permet de caractÃ©riser l'Ã©tat du fantome:
@@ -18,20 +18,20 @@ public class Ghost extends Entite{
      * 1 -> en fuite;
      * 2 -> mort
      */
-    public int etatG = 0;
+    public static int etatG = 0;
 
     /**
      * Permet de caractÃ©riser la vitesse du fantome:
      * 0 -> normal;
      * 1 -> fuite (lent)
      */
-    public int vitesseG = 0;
+    public static int vitesseG = 0;
 
     /**
      * Un fantome
      * 
-     * @param ref la référence d'un fantome (=2)
-     * @param etatG l'état d'un fantome
+     * @param ref la rï¿½fï¿½rence d'un fantome (=2)
+     * @param etatG l'ï¿½tat d'un fantome
      * @param vitesseG la vitesse d'un fantome
      */
     public Ghost(int ref, int x, int y)
@@ -55,39 +55,36 @@ public class Ghost extends Entite{
         int x = p[0];
         int y = p[1];
         int r = Ghost.R.nextInt(4);
-        int[][][] lay = Layout.getLayout();
-        if (r == 0 && lay[0][y-1][x] != 9){
+        int[][] lay0 = Layout.getLayout(0);
+        int[][] lay1 = Layout.getLayout(1);
+        if (r == 0 && lay0[y-1][x] != 9){
             p[0] -= 1;
-            lay[1][y][x] = 0;
+            lay1[y][x] = 0;
         }
-        else if (r == 1 && lay[0][y][x+1] != 9){
+        else if (r == 1 && lay0[y][x+1] != 9){
             p[1] += 1;
-            lay[1][y][x] = 0;
+            lay1[y][x] = 0;
         }
-        else if (r == 2 && lay[0][y+1][x] != 9){
+        else if (r == 2 && lay0[y+1][x] != 9){
             p[0] += 1;
-            lay[1][y][x] = 0;
+            lay1[y][x] = 0;
         }
-        else if (r == 3 && lay[0][y][x-1] != 9){
+        else if (r == 3 && lay0[y][x-1] != 9){
             p[1] -= 1;
-            lay[1][y][x] = 0;
+            lay1[y][x] = 0;
         }
-        this.nextPos = p;
-
-        if (this.etatG == 0 && Pacman.etatP == 0){
-            Pacman.LP -= 1;
-        }
+        Ghost.nextPos = p;
     }
 
     /**
      * Permet de changer la vitesse d'un fantome
      */
-    public void changeV(){
-        if (this.vitesseG == 0){
-            this.vitesseG = 1;
+    public static void changeV(){
+        if (Ghost.vitesseG == 0){
+            Ghost.vitesseG = 1;
         }
-        if (this.vitesseG == 1){
-            this.vitesseG = 0;
+        else if (Ghost.vitesseG == 1){
+            Ghost.vitesseG = 0;
         }
     }
 
@@ -100,7 +97,7 @@ public class Ghost extends Entite{
      * @return l'Ã©tat du fantome
      */
     public int getEtatG(){
-        return this.etatG;
+        return Ghost.etatG;
     }
 
     /**
@@ -108,8 +105,8 @@ public class Ghost extends Entite{
      * 
      * @return la prochaine position du fantome
      */
-    public int[] getMoveG(){
-        return this.nextPos;
+    public static int[] getMoveG(){
+        return Ghost.nextPos;
     }
     
     /**
@@ -119,6 +116,6 @@ public class Ghost extends Entite{
      */
     public int getVitesseG()
     {
-    	return this.vitesseG;
+    	return Ghost.vitesseG;
     }
 }

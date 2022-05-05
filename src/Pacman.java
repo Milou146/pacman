@@ -6,7 +6,11 @@ import java.awt.Graphics;
 /**
  * @author Emilien ANDRE
  */
-public class Pacman{
+public class Pacman extends Entite{
+    /**
+     * Le nombre de points de vies de Pacman
+     */
+    static int LP = 3;
     /**
      * The buffered image of Pacman which will be drawn in the graphics
      */
@@ -224,5 +228,50 @@ public class Pacman{
      */
     boolean canMove(){
         return getX() + 10 * getXDir() > 0 && getX() + 10 * getXDir() + 40 < 1920 && getY() + 10 * getYDir() > 0 && getY() + 10 * getYDir() + 40 < 1080;
+    }
+
+    /**
+     * Pacman
+     * 
+     * @param ref la référence de pacman (=1)
+     * @param etatG l'état de Pacman
+     */
+    public Pacman(int ref, short x, short y){
+        super(ref);
+        this.x = x;
+        this.y = y;
+    }
+
+    public static int etatP;
+
+    void moveP(){
+        int[] p = getPos();
+        int x = p[0];
+        int y = p[1];
+        int xMov = getXDir();
+        int yMov = getYDir();
+        int[][] lay0 = Layout.getLayout(0);
+        int[][] lay2 = Layout.getLayout(2);
+        int[] posG = Ghost.getMoveG();
+        if (yMov == -1 && lay0[y-1][x] != 9){
+            p[0] -= 1;
+            lay0[y][x] = 0;
+        }
+        else if (xMov == -1 && lay0[y][x-1] != 9){
+            p[1] += 1;
+            lay0[y][x] = 0;
+        }
+        else if (yMov == 1 && lay0[y+1][x] != 9){
+            p[0] += 1;
+            lay0[y][x] = 0;
+        }
+        else if (xMov == 1 && lay0[y][x+1] != 9){
+            p[1] -= 1;
+            lay0[y][x] = 0;
+        }
+        LPcomp.death(p, posG);
+        int pacG = lay2[p[0]][p[1]];
+        int posP = lay0[p[0]][p[1]];
+        Compteur.incComp(posP, pacG);
     }
 }
