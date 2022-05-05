@@ -76,20 +76,20 @@ public class DeSerializerDonnees {
 	  {
 		    ObjectInputStream ois = null;
 		    try {
-		      final FileInputStream fichier = new FileInputStream("level"+ numero +".ser");
-		      ois = new ObjectInputStream(fichier);
-		      
-		      final Level level = (Level) ois.readObject();
+		      final FileInputStream fichier = new FileInputStream("level"+ numero +".ser"); //On récupère le fichier du quel on va extraire les données.
+		      ois = new ObjectInputStream(fichier); 
+		      //On récupère les données de chaque classe présente dans le fichier.
+		      final Level level = (Level) ois.readObject(); 
 		      final Ghost[] tabGhosts = (Ghost[]) ois.readObject();
 		      final Pacman pacman = (Pacman) ois.readObject();
 		      final int[] tableauNbPoints = (int[]) ois.readObject();
 		      
-		      //Quelques informations sur le niveau qui a ï¿½tï¿½ chargï¿½.
+		      //Quelques informations sur le niveau qui a été chargé.
 		      System.out.println("Numï¿½ro du level : " + level.getNumLevel());
 		      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
 		      System.out.println("Vitesse du niveau : " + level.getVitesse());
 		      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");
-		      
+		      //On modifie les valeurs du DeSerializerDonnees pour qu'elles puissent ensuite être exploitables. 
 		      currentLevel = level;
 		      ghosts = tabGhosts;
 		      lePacman = pacman;
