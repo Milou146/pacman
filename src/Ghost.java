@@ -49,6 +49,9 @@ public class Ghost extends Entite{
      * 1 -> droite;
      * 2 -> bas;
      * 3 -> gauche
+     * !!!!! Le mouvement des ghost n'est censé être random qu'aux intersections
+     * Sinon, il continue sur son chemin comme si de rien n'était
+     * checker les 4 dir
      */
     public void moveG(){
         int[] p = this.getPos();
@@ -57,19 +60,19 @@ public class Ghost extends Entite{
         int r = Ghost.R.nextInt(4);
         int[][] lay0 = Layout.getLayout(0);
         int[][] lay1 = Layout.getLayout(1);
-        if (r == 0 && lay0[y-1][x] != 9){
+        if (r == 0 && lay0[y-1][x] != 1){
             p[0] -= 1;
             lay1[y][x] = 0;
         }
-        else if (r == 1 && lay0[y][x+1] != 9){
+        else if (r == 1 && lay0[y][x+1] != 1){
             p[1] += 1;
             lay1[y][x] = 0;
         }
-        else if (r == 2 && lay0[y+1][x] != 9){
+        else if (r == 2 && lay0[y+1][x] != 1){
             p[0] += 1;
             lay1[y][x] = 0;
         }
-        else if (r == 3 && lay0[y][x-1] != 9){
+        else if (r == 3 && lay0[y][x-1] != 1){
             p[1] -= 1;
             lay1[y][x] = 0;
         }

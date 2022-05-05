@@ -32,46 +32,31 @@ public class DeSerializerDonnees {
 	   * 9)  cle:5000 pts
 	   * 10) super:50 pts
 	   */
-	  private static int[] tabPointsPG;
+	  public static int[] tabPointsPG;
 	
-//	  public static void main(final String argv[]) {
-//	    ObjectInputStream ois = null;
-//	    try {
-//	      final FileInputStream fichier = new FileInputStream("level20.ser");
-//	      ois = new ObjectInputStream(fichier);
-//	      
-//	      final Level level = (Level) ois.readObject();
-//	      final Ghost[] tabGhosts = (Ghost[]) ois.readObject();
-//	      final Pacman pacman = (Pacman) ois.readObject();
-//	      final int[] tableauNbPoints = (int[]) ois.readObject();
-//	      
-//	      //Quelques informations sur le niveau qui a �t� charg�.
-//	      System.out.println("Num�ro du level : " + level.getNumLevel());
-//	      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
-//	      System.out.println("Vitesse du niveau : " + level.getVitesse());
-//	      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");
-//	      
-//	      currentLevel = level;
-//	      ghosts = tabGhosts;
-//	      lePacman = pacman;
-//	      tabPointsPG = tableauNbPoints;
-//	  
-//	    } catch (final java.io.IOException e) {
-//	      e.printStackTrace();
-//	    } catch (final ClassNotFoundException e) {
-//	      e.printStackTrace();
-//	    } finally {
-//	      try {
-//	        if (ois != null) {
-//	          ois.close();
-//	        }
-//	      } catch (final IOException ex) {
-//	        ex.printStackTrace();
-//	      }
-//	    }
-//
-//	  }
+	  public static void main(final String argv[]) {
+	    ObjectInputStream ois = null;
+	    try {
+	      final FileInputStream fichier = new FileInputStream("level20.ser");
+	      ois = new ObjectInputStream(fichier);
+	      
+	      final Level level = (Level) ois.readObject();
+	      final Ghost[] tabGhosts = (Ghost[]) ois.readObject();
+	      final Pacman pacman = (Pacman) ois.readObject();
+	      final int[] tableauNbPoints = (int[]) ois.readObject();
+	      
+	      //Quelques informations sur le niveau qui a �t� charg�.
+	      System.out.println("Num�ro du level : " + Level.getNumLevel());
+	      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
+	      System.out.println("Vitesse du niveau : " + level.getVitesse());
+	      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");
+	      
+	      currentLevel = level;
+	      ghosts = tabGhosts;
+	      lePacman = pacman;
+	      tabPointsPG = tableauNbPoints;
 	  
+<<<<<<< Updated upstream
 	  public static void getFichier(String numero)
 	  {
 		    ObjectInputStream ois = null;
@@ -108,6 +93,22 @@ public class DeSerializerDonnees {
 		        ex.printStackTrace();
 		      }
 		    }
+=======
+	    } catch (final java.io.IOException e) {
+	      e.printStackTrace();
+	    } catch (final ClassNotFoundException e) {
+	      e.printStackTrace();
+	    } finally {
+	      try {
+	        if (ois != null) {
+	          ois.close();
+	        }
+	      } catch (final IOException ex) {
+	        ex.printStackTrace();
+	      }
+	    }
+
+>>>>>>> Stashed changes
 	  }
 	  
 	  /**

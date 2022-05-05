@@ -1,7 +1,5 @@
 public class Layout implements java.io.Serializable{
 	
-
-	
 	private static int[][] layout;
 	
 	/**

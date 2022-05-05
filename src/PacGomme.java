@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class PacGomme extends Entite{
     
     /**
@@ -34,12 +36,10 @@ public class PacGomme extends Entite{
      * Une Pac-gomme
      * 
      * @param ref la référence de la Pac-gomme
-     * @param type le type de la Pac-gomme
      * @param nbPoints le nombre de points de la Pac-gomme
      */
-    public PacGomme(int ref, String type, int nbPoints){
+    public PacGomme(int ref, int nbPoints){
         super(ref);
-        this.type = type;
         PacGomme.nbPoints = nbPoints;
     }
 
@@ -59,5 +59,47 @@ public class PacGomme extends Entite{
      */
     public static int decPG(){
         return nbNPG-1;
+    }
+
+    /**
+     * Un random permettant de faire spawner un fruit dans le niveau
+     */
+    public static final Random R = new Random();
+
+    public static void spawnPG(){
+        int r1 = PacGomme.R.nextInt(20);
+        int r2 = PacGomme.R.nextInt(20);
+        Layout[] lay = DeSerializerDonnees.getLevel().getTabLayout();
+        while (lay[0][r1][r2] != 0){
+            r1 = PacGomme.R.nextInt(20);
+            r2 = PacGomme.R.nextInt(20);
+        }
+        int pg;
+        int n = Level.getNumLevel();
+        if (n<10){
+            pg = PacGomme.R.nextInt(1) + 2;
+        }
+        else if (n>10 && n<20){
+            pg = PacGomme.R.nextInt(2) + 2;
+        }
+        else if (n>20 && n<30){
+            pg = PacGomme.R.nextInt(3) + 2;
+        }
+        else if (n>30 && n<40){
+            pg = PacGomme.R.nextInt(4) + 2;
+        }
+        else if (n>40 && n<50){
+            pg = PacGomme.R.nextInt(5) + 2;
+        }
+        else if (n>50 && n<60){
+            pg = PacGomme.R.nextInt(6) + 2;
+        }
+        else if (n>60 && n<70){
+            pg = PacGomme.R.nextInt(7) + 2;
+        }
+        else if (n>70){
+            pg = PacGomme.R.nextInt(8) + 2;
+        }
+        lay[2][r1][r2] = pg;
     }
 }

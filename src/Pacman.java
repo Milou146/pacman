@@ -250,28 +250,27 @@ public class Pacman extends Entite{
         int y = p[1];
         int xMov = getXDir();
         int yMov = getYDir();
-        int[][] lay0 = Layout.getLayout(0);
-        int[][] lay2 = Layout.getLayout(2);
+        Layout[] lay = DeSerializerDonnees.getLevel().getTabLayout();
         int[] posG = Ghost.getMoveG();
-        if (yMov == -1 && lay0[y-1][x] != 9){
+        if (yMov == -1 && lay[0][y-1][x] != 1){
             p[0] -= 1;
-            lay0[y][x] = 0;
+            lay[0][y][x] = 0;
         }
-        else if (xMov == -1 && lay0[y][x-1] != 9){
+        else if (xMov == -1 && lay[0][y][x-1] != 1){
             p[1] += 1;
-            lay0[y][x] = 0;
+            lay[0][y][x] = 0;
         }
-        else if (yMov == 1 && lay0[y+1][x] != 9){
+        else if (yMov == 1 && lay[0][y+1][x] != 1){
             p[0] += 1;
-            lay0[y][x] = 0;
+            lay[0][y][x] = 0;
         }
-        else if (xMov == 1 && lay0[y][x+1] != 9){
+        else if (xMov == 1 && lay[0][y][x+1] != 9){
             p[1] -= 1;
-            lay0[y][x] = 0;
+            lay[0][y][x] = 0;
         }
-        LPcomp.death(p, posG);
-        int pacG = lay2[p[0]][p[1]];
-        int posP = lay0[p[0]][p[1]];
-        Compteur.incComp(posP, pacG);
+        LPcomp.decLP(p, posG);
+        int pacG = lay[2][p[0]][p[1]];
+        int posP = lay[0][p[0]][p[1]];
+        Compteur.incComp(posP, pacG, lay);
     }
 }

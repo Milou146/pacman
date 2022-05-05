@@ -31,13 +31,15 @@ public class Compteur {
 	 * Augmente le nombre de points du compteur
 	 * @return 
 	 */
-	public static void incComp(int posP, int posPacG){
-		if (posPacG == 1){
+	public static void incComp(int posP, int posPG, Layout[] lay){
+		if (posPG == 1){
 			nbPointTot += 10;
 			PacGomme.decPG();
 		}
-		else if (posPacG != 1 && posPacG != 0){
+		else if (posPG != 1 && posPG != 0){
 			nbPointTot += PacGomme.getPointPG();
+			PacGomme.spawnPG();
 		}
+		lay[2][posPG[0]][posPG[1]] = 0;
 	}
 }
