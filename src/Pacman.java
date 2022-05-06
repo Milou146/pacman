@@ -1,8 +1,6 @@
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
-import java.awt.Graphics;
 /**
  * @author Emilien ANDRE
  */
@@ -11,22 +9,6 @@ public class Pacman extends Entite{
      * Le nombre de points de vies de Pacman
      */
     static int LP = 3;
-    /**
-     * The buffered image of Pacman which will be drawn in the graphics
-     */
-    BufferedImage image;
-    /**
-     * The graphics in which Pacman will be drawn each frame
-     */
-    Graphics graphics;
-    /**
-     * The x position of Pacman
-     */
-    short x; // I dont think anyone have a monitor with a resolution higher than 32768 px
-    /**
-     * The y position of Pacman
-     */
-    short y;
     /**
      * The x direction of Pacman
      */
@@ -49,68 +31,6 @@ public class Pacman extends Entite{
      * 3 is +Y
      */
     byte dir;
-    Pacman(Graphics graphics) throws IOException{
-        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\pacman_1_0.png"));
-        this.graphics = graphics;
-        this.x = 60;
-        this.y = 60;
-        this.mouthState = 1;
-        this.xDir = -1;// move left by default
-        this.yDir = 0;
-        this.dir = 0;
-    }
-    /**
-     * Get the image of pacman to be drawn the next frame
-     * @return
-     */
-    BufferedImage getImage(){
-        return this.image;
-    }
-    /**
-     * Get the x position of pacman
-     * @return the x position
-     */
-    short getX(){
-        return this.x;
-    }
-    /**
-     * Get the current y position of pacman
-     * @return the y position
-     */
-    short getY(){
-        return this.y;
-    }
-    /**
-     * Set Pacman's x position
-     * @param newX the new x position
-     */
-    void setX(short newX){
-        this.x = newX;
-    }
-    /**
-     * Set Pacman's y position
-     * @param newY the new y position
-     */
-    void setY(short newY){
-        this.y = newY;
-    }
-    /**
-     * Set Pacman's position
-     * @param newX the new x position
-     * @param newY the nex y position
-     */
-    void setPos(short newX,short newY){
-        this.x = newX;
-        this.y = newY;
-    }
-    /**
-     * Change the image of pacman to be drawn the next frame
-     * @param pathname
-     * @throws IOException
-     */
-    void setImage(String pathname) throws IOException{
-        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\" + pathname));
-    }
     /**
      * 
      * @return true if pacman's mouth is open
@@ -133,12 +53,6 @@ public class Pacman extends Entite{
     void openMouth() throws IOException{
         this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\pacman_1_" + dir + ".png"));
         this.mouthState = 1;
-    }
-    /**
-     * Draw Pacman onto the graphics at his specified position with his speficied BufferedImage
-     */
-    void draw(){
-        graphics.drawImage(image,x,y,null);
     }
     /**
      * Set in which direction Pacman will move
@@ -235,23 +149,27 @@ public class Pacman extends Entite{
      * 
      * @param ref la référence de pacman (=1)
      * @param etatG l'état de Pacman
+     * @throws IOException
      */
-    public Pacman(int ref, short x, short y){
-        super(ref);
-        this.x = x;
-        this.y = y;
+    public Pacman(short ref, short x, short y) throws IOException{
+        super(ref, x, y);
+        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\pacman_1_0.png"));
+        this.mouthState = 1;
+        this.xDir = -1;// move left by default
+        this.yDir = 0;
+        this.dir = 0;
     }
 
     public static int etatP;
 
-    void moveP(){
-        int[] p = getPos();
-        int x = p[0];
-        int y = p[1];
-        int xMov = getXDir();
-        int yMov = getYDir();
+/*     void moveP(){
+        short[] p = getPos();
+        short x = p[0];
+        short y = p[1];
+        byte xMov = getXDir();
+        byte yMov = getYDir();
         Layout[] lay = DeSerializerDonnees.getLevel().getTabLayout();
-        int[] posG = Ghost.getMoveG();
+        short[] posG = Ghost.getMoveG();
         if (yMov == -1 && lay[0][y-1][x] != 1){
             p[0] -= 1;
             lay[0][y][x] = 0;
@@ -272,5 +190,5 @@ public class Pacman extends Entite{
         int pacG = lay[2][p[0]][p[1]];
         int posP = lay[0][p[0]][p[1]];
         Compteur.incComp(posP, pacG, lay);
-    }
+    } */
 }

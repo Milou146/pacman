@@ -10,7 +10,7 @@ public class Ghost extends Entite{
     /**
      * La prochaine position d'un fantome
      */
-    public static int[] nextPos;
+    public static short[] nextPos;
 
     /**
      * Permet de caractériser l'état du fantome:
@@ -18,14 +18,14 @@ public class Ghost extends Entite{
      * 1 -> en fuite;
      * 2 -> mort
      */
-    public static int etatG = 0;
+    public static byte etatG = 0;
 
     /**
      * Permet de caractériser la vitesse du fantome:
      * 0 -> normal;
      * 1 -> fuite (lent)
      */
-    public static int vitesseG = 0;
+    public static byte vitesseG = 0;
 
     /**
      * Un fantome
@@ -34,9 +34,9 @@ public class Ghost extends Entite{
      * @param etatG l'�tat d'un fantome
      * @param vitesseG la vitesse d'un fantome
      */
-    public Ghost(int ref, int x, int y)
+    public Ghost(short ref, short x, short y)
     {
-        super(ref);
+        super(ref,x,y);
         this.x = x;
         this.y = y;
         this.pos[0] = x;
@@ -54,9 +54,9 @@ public class Ghost extends Entite{
      * checker les 4 dir
      */
     public void moveG(){
-        int[] p = this.getPos();
-        int x = p[0];
-        int y = p[1];
+        short[] p = this.getPos();
+        short x = p[0];
+        short y = p[1];
         int r = Ghost.R.nextInt(4);
         int[][] lay0 = Layout.getLayout(0);
         int[][] lay1 = Layout.getLayout(1);
@@ -108,7 +108,7 @@ public class Ghost extends Entite{
      * 
      * @return la prochaine position du fantome
      */
-    public static int[] getMoveG(){
+    public static short[] getMoveG(){
         return Ghost.nextPos;
     }
     

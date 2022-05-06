@@ -1,33 +1,42 @@
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
 
 public class Entite implements java.io.Serializable{
 	/**
 	 * La r�f�rence de l'entit�.
 	 */
-	public int ref ;
+	public short ref ;
 	
 	/**
 	 * La position selon l'axe des abscisses de l'entit�.
 	 */
-	public int x = 0;
+	public short x = 0;
 	
 	/**
 	 * La position selon l'axe des ordonn�es de l'entit�.
 	 */
-	public int y = 0;
-	
+	public short y = 0;
+    /**
+     * The buffered image of the entity which will be drawn in the graphics
+     */
+    BufferedImage image;
 	/**
 	 * La position selon les axes x et y de l'entit�.
 	 */
-	public int[] pos = {this.x,this.y};
+	public short[] pos = {this.x,this.y};
 	
 	/**
 	 * Une entit�, caract�ris�e par sa r�f�rence.
 	 *
 	 * @param ref la r�f�rence de l'entit�
 	 */
-	public Entite(int ref)
+	public Entite(short ref, short x, short y)
 	{
 		this.ref = ref;
+        this.x = x;
+        this.y = y;
 	}
 	
 	/**
@@ -35,7 +44,7 @@ public class Entite implements java.io.Serializable{
 	 * 
 	 * @return la r�f�rence de l'entit�.
 	 */
-	public int getRef()
+	public short getRef()
 	{
 		return this.ref;
 	}
@@ -47,7 +56,7 @@ public class Entite implements java.io.Serializable{
 	 */
 	short getX()
 	{
-		return (short) this.x;
+		return this.x;
 	}
 	
 	/**
@@ -57,16 +66,38 @@ public class Entite implements java.io.Serializable{
 	 */
 	short getY()
 	{
-		return (short) this.y;
+		return this.y;
 	}
-	
+    /**
+     * Change the image of the entity to be drawn the next frame
+     * @param pathname
+     * @throws IOException
+     */
+    void setImage(String pathname) throws IOException{
+        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\" + pathname));
+    }
+    /**
+     * Get the image of pacman to be drawn the next frame
+     * @return
+     */
+    BufferedImage getImage(){
+        return this.image;
+    }
 	/**
 	 * Le couple de coordonn�es de l'entit�.
 	 * 
 	 * @return
 	 */
-	public int[] getPos()
+	public short[] getPos()
 	{
 		return this.pos;
+	}
+
+	void setPos(short newX, short newY){
+		this.x = newX;
+		this.y = newY;
+	}
+	void draw(){
+		View.graphics.drawImage(image,x,y,null);
 	}
 }

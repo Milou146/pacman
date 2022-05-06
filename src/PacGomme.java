@@ -38,8 +38,8 @@ public class PacGomme extends Entite{
      * @param ref la référence de la Pac-gomme
      * @param nbPoints le nombre de points de la Pac-gomme
      */
-    public PacGomme(int ref, int nbPoints){
-        super(ref);
+    public PacGomme(short ref, short x, short y, int nbPoints){
+        super(ref,x,y);
         PacGomme.nbPoints = nbPoints;
     }
 

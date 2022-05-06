@@ -2,20 +2,13 @@
  * This is where we implement all the classes process the view
  * @author Emilien André
  */
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        JFrame frame = new JFrame("Pacman");
-        frame.setSize(new Dimension(1920,1080));
-        frame.setVisible(true);
-        frame.setLocation(80, 30);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Graphics graphics = frame.getGraphics();//the frame's graphic
-        Pacman pacman = new Pacman(graphics);
+        new View();
+        Pacman pacman = new Pacman((short) 1, (short) 100, (short) 100);
         int refreshRate = 200;
         class RefreshFrame extends Thread {
             long refreshRate;
@@ -25,7 +18,7 @@ public class App {
         
             public void run() {
                 while(true){
-                    graphics.clearRect(0,0,1920,1080); //clear the graphics
+                    View.graphics.clearRect(0,0,1920,1080); //clear the graphics
                     pacman.openCloseMouth();//change the mouth's state closed to open or open to closed
                     pacman.draw();
                     try {
@@ -66,7 +59,7 @@ public class App {
             }
         
         }
-        frame.addKeyListener(new GameKeyListener());
+        View.frame.addKeyListener(new GameKeyListener());
 
         while(true){
             if(pacman.canMove()){
