@@ -77,7 +77,7 @@ public class Entite implements java.io.Serializable{
         this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\" + pathname));
     }
     /**
-     * Get the image of pacman to be drawn the next frame
+     * Get the image to be drawn the next frame
      * @return
      */
     BufferedImage getImage(){
