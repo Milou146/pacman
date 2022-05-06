@@ -162,7 +162,7 @@ public class Pacman extends Entite{
 
     public static int etatP;
 
-/*     void moveP(){
+     void moveP(){
         short[] p = getPos();
         short x = p[0];
         short y = p[1];
@@ -190,5 +190,5 @@ public class Pacman extends Entite{
         int pacG = lay[2][p[0]][p[1]];
         int posP = lay[0][p[0]][p[1]];
         Compteur.incComp(posP, pacG, lay);
-    } */
+    }
 }
