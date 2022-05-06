@@ -98,6 +98,6 @@ public class Entite implements java.io.Serializable{
 		this.y = newY;
 	}
 	void draw(){
-		View.graphics.drawImage(image,x,y,null);
+		App.graphics.drawImage(image,x,y,null);
 	}
 }

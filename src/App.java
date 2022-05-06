@@ -4,10 +4,20 @@
  */
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.*;
+import javax.swing.*;
 
 public class App {
+    public static final JFrame frame = new JFrame("Pacman");
+    public static Graphics graphics;
     public static void main(String[] args) throws Exception {
-        new View();
+        frame.setSize(new Dimension(1920,1080));
+        frame.setVisible(true);
+        frame.setLocation(80, 30);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        graphics = frame.getGraphics();//the frame's graphic
+
         Pacman pacman = new Pacman((short) 1, (short) 100, (short) 100);
         int refreshRate = 200;
         class RefreshFrame extends Thread {
@@ -18,7 +28,7 @@ public class App {
         
             public void run() {
                 while(true){
-                    View.graphics.clearRect(0,0,1920,1080); //clear the graphics
+                    graphics.clearRect(0,0,1920,1080); //clear the graphics
                     pacman.openCloseMouth();//change the mouth's state closed to open or open to closed
                     pacman.draw();
                     try {
@@ -59,7 +69,7 @@ public class App {
             }
         
         }
-        View.frame.addKeyListener(new GameKeyListener());
+        frame.addKeyListener(new GameKeyListener());
 
         while(true){
             if(pacman.canMove()){
