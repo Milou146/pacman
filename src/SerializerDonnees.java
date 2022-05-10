@@ -10,7 +10,7 @@ public class SerializerDonnees {
 	 * 
 	 */
 	
-	public static void creerFichier(int numero) {
+	public static void creerFichier(int numero) throws IOException{
 			
 			/**
 			 * Layer Pacman & Murs
@@ -122,10 +122,11 @@ public class SerializerDonnees {
 			final Ghost ghost3 = new Ghost((short)2,(short)1,(short)20);
 			final Ghost ghost4 = new Ghost((short)2,(short)17,(short)20);
 			final Pacman pacman = new Pacman((short)1,(short)9,(short)8);
-			final Layout layoutPacmanMurs = new Layout(plateau0,0);
-			final Layout layoutGhost = new Layout(plateau1,1);
-			final Layout layoutPacgommes = new Layout(plateau2,2);
-			final Layout[] tabLayout = {layoutPacmanMurs, layoutGhost, layoutPacgommes};
+//			final Layout layoutPacmanMurs = new Layout(plateau0,0);
+//			final Layout layoutGhost = new Layout(plateau1,1);
+//			final Layout layoutPacgommes = new Layout(plateau2,2);
+//			final Layout[] tabLayout = {layoutPacmanMurs, layoutGhost, layoutPacgommes}; 
+			final int[][][] tabLayout = {plateau0, plateau1, plateau2};
 			final Ghost[] tabGhosts = {ghost1, ghost2, ghost3, ghost4};
 			final double vitesseNiv = 1 + (numero-1)*0.03;
 			final Level level = new Level(numero,vitesseNiv,204,tabLayout);

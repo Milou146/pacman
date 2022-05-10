@@ -70,7 +70,7 @@ public class PacGomme extends Entite{
         int r1 = PacGomme.R.nextInt(20);
         int r2 = PacGomme.R.nextInt(20);
         Layout[] lay = DeSerializerDonnees.getLevel().getTabLayout();
-        while (lay[0][r1][r2] != 0){
+        while (lay[2][r1][r2] != 0){
             r1 = PacGomme.R.nextInt(20);
             r2 = PacGomme.R.nextInt(20);
         }

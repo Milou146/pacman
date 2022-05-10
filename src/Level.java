@@ -16,7 +16,7 @@ public class Level implements java.io.Serializable{
 	 */
 	private int nbPGLevel = -1;
 	
-	private Layout[] tabLayout;
+	private int[][][] tabLayout;
 	
 	/**
 	 * Constructeur de la classe Level.
@@ -25,7 +25,7 @@ public class Level implements java.io.Serializable{
 	 * @param nbPGLevel : le nombre de PacGommes au d�but du niveau.
 	 * @param tabLayout : l'ensemble des layouts du niveau.
 	 */
-	public Level(int numeroLevel, double vitesse, int nbPGLevel, Layout[] tabLayout)
+	public Level(int numeroLevel, double vitesse, int nbPGLevel, int[][][] tabLayout)
 	{
 		Level.numLevel = numeroLevel;
 		this.vitesse = vitesse;
@@ -68,7 +68,7 @@ public class Level implements java.io.Serializable{
 	 * 
 	 * @return sous forme de tableau l'ensemble des layouts du niveau.
 	 */
-	public Layout[] getTabLayout()
+	public int[][][] getTabLayout()
 	{
 		return this.tabLayout;
 	}
