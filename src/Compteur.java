@@ -29,9 +29,12 @@ public class Compteur {
 
 	/**
 	 * Augmente le nombre de points du compteur
+	 * @param posP La position de Pacman
+	 * @param posPG La position 
+	 * @param
 	 * @return 
 	 */
-	public static void incComp(int posP, int posPG, Layout[] lay){
+	public static void incComp(int[] posP, int[] posPG, int[][] lay){
 		if (posPG == 1){
 			nbPointTot += 10;
 			PacGomme.decPG();
@@ -40,6 +43,6 @@ public class Compteur {
 			nbPointTot += PacGomme.getPointPG();
 			PacGomme.spawnPG();
 		}
-		lay[2][posPG[0]][posPG[1]] = 0;
+		lay[posPG[0]][posPG[1]] = 0;
 	}
 }

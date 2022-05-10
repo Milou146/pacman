@@ -69,12 +69,17 @@ public class PacGomme extends Entite{
     public static void spawnPG(){
         int r1 = PacGomme.R.nextInt(20);
         int r2 = PacGomme.R.nextInt(20);
+<<<<<<< Updated upstream
         Layout[] lay = DeSerializerDonnees.getLevel().getTabLayout();
         while (lay[2][r1][r2] != 0){
+=======
+        int[][] lay = DeSerializerDonnees.getLevel().getTabLayout();
+        while (lay[r1][r2] != 0){
+>>>>>>> Stashed changes
             r1 = PacGomme.R.nextInt(20);
             r2 = PacGomme.R.nextInt(20);
         }
-        int pg;
+        int pg = 0;
         int n = Level.getNumLevel();
         if (n<10){
             pg = PacGomme.R.nextInt(1) + 2;
@@ -100,6 +105,6 @@ public class PacGomme extends Entite{
         else if (n>70){
             pg = PacGomme.R.nextInt(8) + 2;
         }
-        lay[2][r1][r2] = pg;
+        lay[r1][r2] = pg;
     }
 }
