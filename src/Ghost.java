@@ -64,11 +64,11 @@ public class Ghost extends Entite{
         short y = p[1];
         int[][] lay0 = Layout.getLayout(0);
         int[][] lay1 = Layout.getLayout(1);
-        int s = nbChemins(lay0, x, y);
-        if (s <= 2){//Permet au fantome de continuer sur sa route si il est sur
-                    //une ligne droite ou brisée
-            int dx = x-Ghost.lastPos[0];
-            int dy = y-Ghost.lastPos[1];
+        int s = nbChemins(lay0, x, y)-1;
+        int dx = x-Ghost.lastPos[0];
+        int dy = y-Ghost.lastPos[1];
+        int a = 0;// Est utilisé pour checker si le fantome a bien bougé
+        if (s == 1){//Permet au fantome de continuer sur sa route si il est sur une ligne droite ou brisée
             if (dx != 0){
                 if (lay0[y][x+dx] != 1){
                     p[0] += dx;
@@ -92,24 +92,39 @@ public class Ghost extends Entite{
                 }
             }
         }
-        else {
+        else if (s == 3){//Permet au fantome de continuer son mouvement si il arrive à une intersection de 3 ou 4 chemins
             int r = Ghost.R.nextInt(s);
-
+            while (a == 0){
+                if (dx != 0){
+                    if (r == 0 && lay0[y][x+dx] != 1){
+                        p[0] += dx;
+                        a = 1;
+                    }
+                    else if (r == 1 && lay0[y+dy][x] != 1){
+                        p[1] += dy;
+                        a = 1;
+                    }
+                    else if (r == 2 && lay0[y-dy][x] != 1){
+                        p[1] -= dy;
+                        a = 1;
+                    }
+                }
+                else {
+                    if (r == 0 && lay0[y+dy][x] != 1){
+                        p[1] += dy;
+                        a = 1;
+                    }
+                    else if (r == 1 && lay0[y][x+dx] != 1){
+                        p[0] += dx;
+                        a = 1;
+                    }
+                    else if (r == 2 && lay0[y][x+dx] != 1){
+                        p[0] -= dx;
+                        a = 1;
+                    }
+                }  
+            }
         }
-        /*
-        if (r == 0 && lay0[y-1][x] != 1){
-            p[0] -= 1;
-        }
-        else if (r == 1 && lay0[y][x+1] != 1){
-            p[1] += 1;
-        }
-        else if (r == 2 && lay0[y+1][x] != 1){
-            p[0] += 1;
-        }
-        else if (r == 3 && lay0[y][x-1] != 1){
-            p[1] -= 1;
-        }
-        */
         lay1[y][x] = 0;
         Ghost.lastPos[0] = x;
         Ghost.lastPos[1] = y;
@@ -118,16 +133,16 @@ public class Ghost extends Entite{
 
     public int nbChemins(int[][] lay, short x, short y){
         int s = 0;
-        if (lay[y-1][x] == 1){
+        if (lay[y-1][x] == 0){
             s += 1;
         }
-        if (lay[y+1][x] == 1){
+        if (lay[y+1][x] == 0){
             s += 1;
         }
-        if (lay[y][x-1] == 1){
+        if (lay[y][x-1] == 0){
             s += 1;
         }
-        if (lay[y][x+1] == 1){
+        if (lay[y][x+1] == 0){
             s += 1;
         }
         return s;
