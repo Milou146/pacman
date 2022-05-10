@@ -43,7 +43,7 @@ public class Pacman extends Entite{
      * @throws IOException
      */
     void closeMouth() throws IOException{
-        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\pacman_0.png"));
+        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "/lib/pacman_0.png"));
         this.mouthState = 0;
     }
     /**
@@ -51,7 +51,7 @@ public class Pacman extends Entite{
      * @throws IOException
      */
     void openMouth() throws IOException{
-        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\pacman_1_" + dir + ".png"));
+        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "/lib/pacman_1_" + dir + ".png"));
         this.mouthState = 1;
     }
     /**
@@ -153,7 +153,8 @@ public class Pacman extends Entite{
      */
     public Pacman(short ref, short x, short y) throws IOException{
         super(ref, x, y);
-        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "\\lib\\pacman_1_0.png"));
+        System.out.println(System.getProperty("user.dir") + "/lib/pacman_1_0.png");
+        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "/lib/pacman_1_0.png"));
         this.mouthState = 1;
         this.xDir = -1;// move left by default
         this.yDir = 0;
