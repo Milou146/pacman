@@ -62,8 +62,8 @@ public class Ghost extends Entite{
         short[] p = this.getPos();
         short x = p[0];
         short y = p[1];
-        int[][] lay0 = Layout.getLayout(0);
-        int[][] lay1 = Layout.getLayout(1);
+        int[][] lay0 = (DeSerializerDonnees.getLevel().getTabLayout())[0];
+        int[][] lay1 = (DeSerializerDonnees.getLevel().getTabLayout())[1];
         int s = nbChemins(lay0, x, y)-1;
         int dx = x-Ghost.lastPos[0];
         int dy = y-Ghost.lastPos[1];

@@ -16,11 +16,7 @@ public class Level implements java.io.Serializable{
 	 */
 	private int nbPGLevel = -1;
 	
-<<<<<<< Updated upstream
 	private int[][][] tabLayout;
-=======
-	private int[][] tabLayout;
->>>>>>> Stashed changes
 	
 	/**
 	 * Constructeur de la classe Level.
@@ -29,11 +25,8 @@ public class Level implements java.io.Serializable{
 	 * @param nbPGLevel : le nombre de PacGommes au d�but du niveau.
 	 * @param tabLayout : l'ensemble des layouts du niveau.
 	 */
-<<<<<<< Updated upstream
 	public Level(int numeroLevel, double vitesse, int nbPGLevel, int[][][] tabLayout)
-=======
-	public Level(int numeroLevel, double vitesse, int nbPGLevel, int[][] tabLayout)
->>>>>>> Stashed changes
+
 	{
 		Level.numLevel = numeroLevel;
 		this.vitesse = vitesse;
@@ -76,11 +69,8 @@ public class Level implements java.io.Serializable{
 	 * 
 	 * @return sous forme de tableau l'ensemble des layouts du niveau.
 	 */
-<<<<<<< Updated upstream
 	public int[][][] getTabLayout()
-=======
-	public int[][] getTabLayout()
->>>>>>> Stashed changes
+
 	{
 		return this.tabLayout;
 	}
