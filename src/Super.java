@@ -12,8 +12,8 @@ public class Super extends PacGomme{
      * @param type
      * @param nbPoints
      */
-    public Super(int ref, String type, int nbPoints) {
-        super(ref, type, nbPoints);
+    public Super(short ref, short x, short y, int nbPoints) {
+        super(ref,x,y, nbPoints);
     }
 
     /**

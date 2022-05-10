@@ -10,7 +10,12 @@ public class Ghost extends Entite{
     /**
      * La prochaine position d'un fantome
      */
-    public static int[] nextPos;
+    public static short[] nextPos;
+
+    /**
+     * La dernière position d'un fantome
+     */
+    public static short[] lastPos;
 
     /**
      * Permet de caractériser l'état du fantome:
@@ -18,14 +23,14 @@ public class Ghost extends Entite{
      * 1 -> en fuite;
      * 2 -> mort
      */
-    public static int etatG = 0;
+    public static byte etatG = 0;
 
     /**
      * Permet de caractériser la vitesse du fantome:
      * 0 -> normal;
      * 1 -> fuite (lent)
      */
-    public static int vitesseG = 0;
+    public static byte vitesseG = 0;
 
     /**
      * Un fantome
@@ -34,9 +39,9 @@ public class Ghost extends Entite{
      * @param etatG l'�tat d'un fantome
      * @param vitesseG la vitesse d'un fantome
      */
-    public Ghost(int ref, int x, int y)
+    public Ghost(short ref, short x, short y)
     {
-        super(ref);
+        super(ref,x,y);
         this.x = x;
         this.y = y;
         this.pos[0] = x;
@@ -49,31 +54,83 @@ public class Ghost extends Entite{
      * 1 -> droite;
      * 2 -> bas;
      * 3 -> gauche
+     * !!!!! Le mouvement des ghost n'est censé être random qu'aux intersections
+     * Sinon, il continue sur son chemin comme si de rien n'était
+     * checker les 4 dir
      */
     public void moveG(){
-        int[] p = this.getPos();
-        int x = p[0];
-        int y = p[1];
-        int r = Ghost.R.nextInt(4);
+        short[] p = this.getPos();
+        short x = p[0];
+        short y = p[1];
         int[][] lay0 = Layout.getLayout(0);
         int[][] lay1 = Layout.getLayout(1);
-        if (r == 0 && lay0[y-1][x] != 9){
+        int s = nbChemins(lay0, x, y);
+        if (s <= 2){//Permet au fantome de continuer sur sa route si il est sur
+                    //une ligne droite ou brisée
+            int dx = x-Ghost.lastPos[0];
+            int dy = y-Ghost.lastPos[1];
+            if (dx != 0){
+                if (lay0[y][x+dx] != 1){
+                    p[0] += dx;
+                }
+                else if (lay0[y+dy][x] != 1){
+                    p[1] += dy;
+                }
+                else if (lay0[y-dy][x] != 1){
+                    p[1] -= dy;
+                }
+            }
+            else {
+                if (lay0[y+dy][x] != 1){
+                    p[1] += dy;
+                }
+                else if (lay0[y][x+dx] != 1){
+                    p[0] += dx;
+                }
+                else if (lay0[y][x+dx] != 1){
+                    p[0] -= dx;
+                }
+            }
+        }
+        else {
+            int r = Ghost.R.nextInt(s);
+
+        }
+        /*
+        if (r == 0 && lay0[y-1][x] != 1){
             p[0] -= 1;
-            lay1[y][x] = 0;
         }
-        else if (r == 1 && lay0[y][x+1] != 9){
+        else if (r == 1 && lay0[y][x+1] != 1){
             p[1] += 1;
-            lay1[y][x] = 0;
         }
-        else if (r == 2 && lay0[y+1][x] != 9){
+        else if (r == 2 && lay0[y+1][x] != 1){
             p[0] += 1;
-            lay1[y][x] = 0;
         }
-        else if (r == 3 && lay0[y][x-1] != 9){
+        else if (r == 3 && lay0[y][x-1] != 1){
             p[1] -= 1;
-            lay1[y][x] = 0;
         }
+        */
+        lay1[y][x] = 0;
+        Ghost.lastPos[0] = x;
+        Ghost.lastPos[1] = y;
         Ghost.nextPos = p;
+    }
+
+    public int nbChemins(int[][] lay, short x, short y){
+        int s = 0;
+        if (lay[y-1][x] == 1){
+            s += 1;
+        }
+        if (lay[y+1][x] == 1){
+            s += 1;
+        }
+        if (lay[y][x-1] == 1){
+            s += 1;
+        }
+        if (lay[y][x+1] == 1){
+            s += 1;
+        }
+        return s;
     }
 
     /**
@@ -105,7 +162,7 @@ public class Ghost extends Entite{
      * 
      * @return la prochaine position du fantome
      */
-    public static int[] getMoveG(){
+    public static short[] getMoveG(){
         return Ghost.nextPos;
     }
     

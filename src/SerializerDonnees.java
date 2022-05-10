@@ -117,11 +117,11 @@ public class SerializerDonnees {
 			final int[] tableauNbPoints = 
 				{0,10,100,300,500,700,1000,2000,3000,5000,50};
 			
-			final Ghost ghost1 = new Ghost(2,1,1);
-			final Ghost ghost2 = new Ghost(2,17,1);
-			final Ghost ghost3 = new Ghost(2,1,20);
-			final Ghost ghost4 = new Ghost(2,17,20);
-			final Pacman pacman = new Pacman(1,9,8);
+			final Ghost ghost1 = new Ghost((short)2,(short)1,(short)1);
+			final Ghost ghost2 = new Ghost((short)2,(short)17,(short)1);
+			final Ghost ghost3 = new Ghost((short)2,(short)1,(short)20);
+			final Ghost ghost4 = new Ghost((short)2,(short)17,(short)20);
+			final Pacman pacman = new Pacman((short)1,(short)9,(short)8);
 			final Layout layoutPacmanMurs = new Layout(plateau0,0);
 			final Layout layoutGhost = new Layout(plateau1,1);
 			final Layout layoutPacgommes = new Layout(plateau2,2);

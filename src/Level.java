@@ -3,16 +3,16 @@ public class Level implements java.io.Serializable{
 	/**
 	 * Numero du niveau actuel.
 	 */
-	private int numLevel = 0;
+	private static int numLevel = 0;
 	
 	/**
-	 * Caractérise la vitesse du jeu.
-	 * Le facteur est augmenté de 0,03.
+	 * Caractï¿½rise la vitesse du jeu.
+	 * Le facteur est augmentï¿½ de 0,03.
 	 */
 	private double vitesse = 1;
 	
 	/**
-	 * Nombre de PacGommes présentent au début du niveau.
+	 * Nombre de PacGommes prï¿½sentent au dï¿½but du niveau.
 	 */
 	private int nbPGLevel = -1;
 	
@@ -20,14 +20,14 @@ public class Level implements java.io.Serializable{
 	
 	/**
 	 * Constructeur de la classe Level.
-	 * @param numLevel : le numéro du niveau.
+	 * @param numLevel : le numï¿½ro du niveau.
 	 * @param vitesse : la vitesse du jeu.
-	 * @param nbPGLevel : le nombre de PacGommes au début du niveau.
+	 * @param nbPGLevel : le nombre de PacGommes au dï¿½but du niveau.
 	 * @param tabLayout : l'ensemble des layouts du niveau.
 	 */
 	public Level(int numeroLevel, double vitesse, int nbPGLevel, Layout[] tabLayout)
 	{
-		this.numLevel = numeroLevel;
+		Level.numLevel = numeroLevel;
 		this.vitesse = vitesse;
 		this.nbPGLevel = nbPGLevel;
 		this.tabLayout = tabLayout;
@@ -38,9 +38,9 @@ public class Level implements java.io.Serializable{
 	 *
 	 * @return le numero du niveau.
 	 */
-	public int getNumLevel()
+	public static int getNumLevel()
 	{
-		return this.numLevel;
+		return Level.numLevel;
 	}
 	
 	/**
@@ -54,9 +54,9 @@ public class Level implements java.io.Serializable{
 	}
 	
 	/**
-	 * Donne le nombre de PacGommes présentent au début du niveau.
+	 * Donne le nombre de PacGommes prï¿½sentent au dï¿½but du niveau.
 	 * 
-	 * @return le nombre de PacGommes présentent au début du niveau.
+	 * @return le nombre de PacGommes prï¿½sentent au dï¿½but du niveau.
 	 */
 	public int getNbPGLevel()
 	{

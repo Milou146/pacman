@@ -36,27 +36,27 @@ public class DeSerializerDonnees {
 	  
 	  /**
 	   * Fonction qui permet d'extraire les informations d'un niveau. 
-	   * @param numero du niveau du quel on souhaite extraire les données.
+	   * @param numero du niveau du quel on souhaite extraire les donnï¿½es.
 	   */
 	  
 	  public static void getFichier(String numero)
 	  {
 		    ObjectInputStream ois = null;
 		    try {
-		      final FileInputStream fichier = new FileInputStream("level"+ numero +".ser"); //On récupère le fichier du quel on va extraire les données.
+		      final FileInputStream fichier = new FileInputStream("level"+ numero +".ser"); //On rï¿½cupï¿½re le fichier du quel on va extraire les donnï¿½es.
 		      ois = new ObjectInputStream(fichier); 
-		      //On récupère les données de chaque classe présente dans le fichier.
+		      //On rï¿½cupï¿½re les donnï¿½es de chaque classe prï¿½sente dans le fichier.
 		      final Level level = (Level) ois.readObject(); 
 		      final Ghost[] tabGhosts = (Ghost[]) ois.readObject();
 		      final Pacman pacman = (Pacman) ois.readObject();
 		      final int[] tableauNbPoints = (int[]) ois.readObject();
 		      
-		      //Quelques informations sur le niveau qui a été chargé.
+		      //Quelques informations sur le niveau qui a ï¿½tï¿½ chargï¿½.
 		      System.out.println("Numï¿½ro du level : " + level.getNumLevel());
 		      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
 		      System.out.println("Vitesse du niveau : " + level.getVitesse());
 		      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");
-		      //On modifie les valeurs du DeSerializerDonnees pour qu'elles puissent ensuite être exploitables. 
+		      //On modifie les valeurs du DeSerializerDonnees pour qu'elles puissent ensuite ï¿½tre exploitables. 
 		      currentLevel = level;
 		      ghosts = tabGhosts;
 		      lePacman = pacman;
@@ -118,42 +118,5 @@ public class DeSerializerDonnees {
 		  return tabPointsPG;
 	  }
 
-//	  public static void main(final String argv[]) {
-//	    ObjectInputStream ois = null;
-//	    try {
-//	      final FileInputStream fichier = new FileInputStream("level20.ser");
-//	      ois = new ObjectInputStream(fichier);
-//	      
-//	      final Level level = (Level) ois.readObject();
-//	      final Ghost[] tabGhosts = (Ghost[]) ois.readObject();
-//	      final Pacman pacman = (Pacman) ois.readObject();
-//	      final int[] tableauNbPoints = (int[]) ois.readObject();
-//	      
-//	      //Quelques informations sur le niveau qui a ï¿½tï¿½ chargï¿½.
-//	      System.out.println("Numï¿½ro du level : " + level.getNumLevel());
-//	      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
-//	      System.out.println("Vitesse du niveau : " + level.getVitesse());
-//	      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");
-//	      
-//	      currentLevel = level;
-//	      ghosts = tabGhosts;
-//	      lePacman = pacman;
-//	      tabPointsPG = tableauNbPoints;
-//	  
-//	    } catch (final java.io.IOException e) {
-//	      e.printStackTrace();
-//	    } catch (final ClassNotFoundException e) {
-//	      e.printStackTrace();
-//	    } finally {
-//	      try {
-//	        if (ois != null) {
-//	          ois.close();
-//	        }
-//	      } catch (final IOException ex) {
-//	        ex.printStackTrace();
-//	      }
-//	    }
-//
-//	  }
 	}
 

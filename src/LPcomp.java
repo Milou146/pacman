@@ -19,11 +19,20 @@ public class LPcomp {
 	 * Permer de diminuer le nb de LP Pacman si il ya a collision avec un fantôme
 	 * @param pos
 	 */
-	public static void death(int[] posP, int[] posG){
+	public static void decLP(short[] posP, short[] posG){
 		if (Pacman.etatP == 0 && Ghost.etatG == 0 && posP == posG){
 			LP -= 1;
 			Pacman.etatP = 1;
 		}
+		if (LP == 0){
+			death();
+		}
 	}
 	
+	/**
+	 * Game over
+	 */
+	public static void death(){
+
+	}
 }
