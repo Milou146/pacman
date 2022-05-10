@@ -13,6 +13,11 @@ public class Ghost extends Entite{
     public static short[] nextPos;
 
     /**
+     * La dernière position d'un fantome
+     */
+    public static short[] lastPos;
+
+    /**
      * Permet de caractériser l'état du fantome:
      * 0 -> normal;
      * 1 -> en fuite;
@@ -57,26 +62,75 @@ public class Ghost extends Entite{
         short[] p = this.getPos();
         short x = p[0];
         short y = p[1];
-        int r = Ghost.R.nextInt(4);
         int[][] lay0 = Layout.getLayout(0);
         int[][] lay1 = Layout.getLayout(1);
+        int s = nbChemins(lay0, x, y);
+        if (s <= 2){//Permet au fantome de continuer sur sa route si il est sur
+                    //une ligne droite ou brisée
+            int dx = x-Ghost.lastPos[0];
+            int dy = y-Ghost.lastPos[1];
+            if (dx != 0){
+                if (lay0[y][x+dx] != 1){
+                    p[0] += dx;
+                }
+                else if (lay0[y+dy][x] != 1){
+                    p[1] += dy;
+                }
+                else if (lay0[y-dy][x] != 1){
+                    p[1] -= dy;
+                }
+            }
+            else {
+                if (lay0[y+dy][x] != 1){
+                    p[1] += dy;
+                }
+                else if (lay0[y][x+dx] != 1){
+                    p[0] += dx;
+                }
+                else if (lay0[y][x+dx] != 1){
+                    p[0] -= dx;
+                }
+            }
+        }
+        else {
+            int r = Ghost.R.nextInt(s);
+
+        }
+        /*
         if (r == 0 && lay0[y-1][x] != 1){
             p[0] -= 1;
-            lay1[y][x] = 0;
         }
         else if (r == 1 && lay0[y][x+1] != 1){
             p[1] += 1;
-            lay1[y][x] = 0;
         }
         else if (r == 2 && lay0[y+1][x] != 1){
             p[0] += 1;
-            lay1[y][x] = 0;
         }
         else if (r == 3 && lay0[y][x-1] != 1){
             p[1] -= 1;
-            lay1[y][x] = 0;
         }
+        */
+        lay1[y][x] = 0;
+        Ghost.lastPos[0] = x;
+        Ghost.lastPos[1] = y;
         Ghost.nextPos = p;
+    }
+
+    public int nbChemins(int[][] lay, short x, short y){
+        int s = 0;
+        if (lay[y-1][x] == 1){
+            s += 1;
+        }
+        if (lay[y+1][x] == 1){
+            s += 1;
+        }
+        if (lay[y][x-1] == 1){
+            s += 1;
+        }
+        if (lay[y][x+1] == 1){
+            s += 1;
+        }
+        return s;
     }
 
     /**

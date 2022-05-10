@@ -55,6 +55,8 @@ public class DeSerializerDonnees {
 	      ghosts = tabGhosts;
 	      lePacman = pacman;
 	      tabPointsPG = tableauNbPoints;
+		}
+	  }
 	  
 	  public static void getFichier(String numero)
 	  {
@@ -136,4 +138,3 @@ public class DeSerializerDonnees {
 	  }
 
 	}
-
