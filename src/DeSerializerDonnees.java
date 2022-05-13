@@ -52,7 +52,7 @@ public class DeSerializerDonnees {
 		      final int[] tableauNbPoints = (int[]) ois.readObject();
 		      
 		      //Quelques informations sur le niveau qui a �t� charg�.
-		      System.out.println("Num�ro du level : " + level.getNumLevel());
+		      System.out.println("Num�ro du level : " + Level.getNumLevel());
 		      System.out.println("Nombre de PacGommes dans le niveau : " + level.getNbPGLevel());
 		      System.out.println("Vitesse du niveau : " + level.getVitesse());
 		      System.out.println("PacmanPos : (" + pacman.getX() + "," + pacman.getY() + ")");

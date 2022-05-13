@@ -74,4 +74,9 @@ public class Level implements java.io.Serializable{
 	{
 		return this.tabLayout;
 	}
+	public void removeEnt(int x,int y){
+		tabLayout[0][y][x] = 0;
+		tabLayout[2][y][x] = 0;
+		App.graphics.clearRect(x*40+1,y*40+1,39,39);
+	}
 }

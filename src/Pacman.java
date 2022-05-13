@@ -111,12 +111,6 @@ public class Pacman extends Entite{
         yDir = newYDir;
     }
     /**
-     * Move Pacman 10 pixels in his direction
-     */
-    void move(){
-        setPos((short)(getX() + 10 * getXDir()),(short)(getY() + 10 * getYDir()));
-    }
-    /**
      * If Pacman is stuck in a wall his mouth remains open
      * otherwise his mouth closed if its open or open if its closed
      */
@@ -151,10 +145,9 @@ public class Pacman extends Entite{
      * @param etatG l'état de Pacman
      * @throws IOException
      */
-    public Pacman(short ref, short x, short y) throws IOException{
+    public Pacman(short ref, byte x, byte y) throws IOException{
         super(ref, x, y);
         System.out.println(System.getProperty("user.dir") + "/lib/pacman_1_0.png");
-        this.image = ImageIO.read(new File(System.getProperty("user.dir") + "/lib/pacman_1_0.png"));
         this.mouthState = 1;
         this.xDir = -1;// move left by default
         this.yDir = 0;
@@ -163,33 +156,34 @@ public class Pacman extends Entite{
 
     public static int etatP;
 
-     void moveP(){
-        short[] p = getPos();
-        short x = p[0];
-        short y = p[1];
-        byte xMov = getXDir();
-        byte yMov = getYDir();
+     void move(){
+        // clear the case
+        App.graphics.clearRect(x*40+1, y*40+1, 39,39);
+        byte[] p = getPos();
         int[][] lay0 = (DeSerializerDonnees.getLevel().getTabLayout())[0];
-        short[] posG = Ghost.getMoveG();
-        if (yMov == -1 && lay0[y-1][x] != 1){
-            p[0] -= 1;
-            lay0[y][x] = 0;
+        Level level = DeSerializerDonnees.getLevel();
+        if (yDir == 1 && y+1 < 22 && lay0[y+1][x] != 1){
+            y += 1;
+            level.removeEnt(x,y);
         }
-        else if (xMov == -1 && lay0[y][x-1] != 1){
-            p[1] += 1;
-            lay0[y][x] = 0;
+        else if (xDir == 1 && x+1 < 19 &&lay0[y][x+1] != 1){
+            x += 1;
+            level.removeEnt(x,y);
         }
-        else if (yMov == 1 && lay0[y+1][x] != 1){
-            p[0] += 1;
-            lay0[y][x] = 0;
+        else if (yDir == -1 && y - 1 > 0 && lay0[y-1][x] != 1){
+            y -= 1;
+            level.removeEnt(x,y);
         }
-        else if (xMov == 1 && lay0[y][x+1] != 9){
-            p[1] -= 1;
-            lay0[y][x] = 0;
+        else if (xDir == -1 && x - 1 > 0 && lay0[y][x-1] != 1){
+            x -= 1;
+            level.removeEnt(x,y);
         }
-        LPcomp.decLP(p, posG);
+        for(int i=0; i<=3; i++){
+            LPcomp.decLP(p, App.ghosts[i].getPos());
+        }
         int[][] lay1 = (DeSerializerDonnees.getLevel().getTabLayout())[1];
         int PG = lay1[p[0]][p[1]];
         Compteur.incComp(PG, p, lay1);
+        draw();
     }
 }

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Super extends PacGomme{
 
     /**
@@ -11,8 +13,9 @@ public class Super extends PacGomme{
      * @param ref
      * @param type
      * @param nbPoints
+     * @throws IOException
      */
-    public Super(short ref, short x, short y, int nbPoints) {
+    public Super(short ref, byte x, byte y, int nbPoints) throws IOException {
         super(ref,x,y, nbPoints);
     }
 

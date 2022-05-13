@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Random;
 
 public class PacGomme extends Entite{
@@ -37,8 +38,9 @@ public class PacGomme extends Entite{
      * 
      * @param ref la référence de la Pac-gomme
      * @param nbPoints le nombre de points de la Pac-gomme
+     * @throws IOException
      */
-    public PacGomme(short ref, short x, short y, int nbPoints){
+    public PacGomme(short ref, byte x, byte y, int nbPoints) throws IOException{
         super(ref,x,y);
         PacGomme.nbPoints = nbPoints;
     }
@@ -69,7 +71,7 @@ public class PacGomme extends Entite{
     public static void spawnPG(){
         int r1 = PacGomme.R.nextInt(20);
         int r2 = PacGomme.R.nextInt(20);
-        int[][] lay = DeSerializerDonnees.getLevel().getTabLayout();
+        int[][] lay = DeSerializerDonnees.getLevel().getTabLayout()[0];
         while (lay[r1][r2] != 0){
             r1 = PacGomme.R.nextInt(20);
             r2 = PacGomme.R.nextInt(20);

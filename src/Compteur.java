@@ -33,7 +33,7 @@ public class Compteur {
 	 * @param lay le layout des Pac-gommes
 	 * @return le nombre de points après l'ajout de la Pac-gomme mangée
 	 */
-	public static void incComp(int PG, int[] posP, int[][] lay){
+	public static void incComp(int PG, byte[] posP, int[][] lay){
 		if (PG == 1){
 			nbPointTot += 10;
 			PacGomme.decPG();

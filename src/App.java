@@ -10,15 +10,48 @@ import javax.swing.*;
 public class App {
     public static final JFrame frame = new JFrame("Pacman");
     public static Graphics graphics;
+    public static Ghost[] ghosts;
+    public static int[][] pacgommes;
     public static void main(String[] args) throws Exception {
-        frame.setSize(new Dimension(1920,1080));
+        // Frame Init
+        frame.setSize(new Dimension(1000,1000));
         frame.setVisible(true);
         frame.setLocation(80, 30);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         graphics = frame.getGraphics();//the frame's graphic
 
-        Pacman pacman = new Pacman((short) 1, (short) 100, (short) 100);
+        // Getting game data
+        SerializerDonnees.creerFichier(1);
+        DeSerializerDonnees.getFichier("1");
+
+        // Loading game data
+        Pacman pacman = DeSerializerDonnees.getPacman();
+        ghosts = DeSerializerDonnees.getGhosts();
+        int[][] walls = DeSerializerDonnees.getLevel().getTabLayout()[0];
+        pacgommes = DeSerializerDonnees.getLevel().getTabLayout()[2];
+
+        // Setting entities images
+        pacman.setImage("pacman_1_0.png");
+        for(int i=0;i<=3;i++){
+            ghosts[i].setImage("ghost" + i + ".png");
+        }
+
+        // Drawing the game board and entities
+        for(int i=0; i<22; i++){
+            for(int j=0; j<19; j++){
+                if(walls[i][j] == 1){
+                    graphics.drawRect(j*40, i*40, 40, 40);
+                }
+                if(pacgommes[i][j] == 1){
+                    graphics.drawOval(j*40+10, i*40+10, 20,20);
+                }
+            }
+        }
+        for(int i=0;i<=3;i++){
+            ghosts[i].draw();
+        }
+
+        // Setting the refresh frame
         int refreshRate = 200;
         class RefreshFrame extends Thread {
             long refreshRate;
@@ -28,9 +61,7 @@ public class App {
         
             public void run() {
                 while(true){
-                    graphics.clearRect(0,0,1920,1080); //clear the graphics
                     pacman.openCloseMouth();//change the mouth's state closed to open or open to closed
-                    pacman.draw();
                     try {
                         Thread.sleep(refreshRate);
                     } catch (InterruptedException e) {
@@ -41,6 +72,8 @@ public class App {
         }
         RefreshFrame autoRefresh = new RefreshFrame(refreshRate);
         autoRefresh.start();
+
+        // KeyListener
         class GameKeyListener implements KeyListener{
         
             @Override
@@ -71,9 +104,11 @@ public class App {
         }
         frame.addKeyListener(new GameKeyListener());
 
+        // Moving the entities
         while(true){
-            if(pacman.canMove()){
-                pacman.move();
+            pacman.move();
+            for(int i=0; i<=3; i++){
+                ghosts[i].move();
             }
             Thread.sleep(refreshRate); // we don't want the move to be triggered more than the screen refresh
         }
